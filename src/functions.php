@@ -1,8 +1,8 @@
 <?php
 
 // TASK ONE
-$array = ['One', 'Two', 'Three', 'Four', 'Five']; 
 function task1($array, $print = true) {
+  $array = ['One', 'Two', 'Three', 'Four', 'Five'];
   if ($print) {
     return implode(' ', $array);
   } else {
@@ -15,19 +15,28 @@ function task1($array, $print = true) {
 }
 
 // TASK TWO
-function calcSum(...$args) {
-  $operator = $args[0];
-  $result = 0;
-
-  if ($operator == '+') {
-    for ($i = 1; $i < sizeof($args); $i++) {
-      $result += $args[$i];
-    }
-  } else {
-    return 'Неизвестный мне оператор, попробуйте всё же указать "+" я умею только складывать:)';
+function calcEverything($operator, ...$args) {
+  
+  switch ($operator) {
+    case '+':
+      $result = array_sum($args);
+      return implode($operator, $args) . "=" . array_sum($args);
+    case '-':
+      $result = array_shift($args) - array_sum($args);
+      return implode($operator, $args) . "=" . $result;
+    case '*':
+      $result = array_product($args);
+      return implode($operator, $args) . "=" . $result;
+    case '/':
+      $result = array_shift($args);
+      foreach ($args as $arg) {
+        $result = $result / $arg;
+      }
+      return implode($operator, $args) . "=" . $result;
+    
+    default:
+      return 'Неизвестная мне сущность';
   }
-
-  return $result;
 }
 
 // TASK THREE
@@ -47,8 +56,30 @@ function multiTable(int $a, int $b)
     echo $result;
 }
 
+// TASK FOUR
+function getDateInfo() {
+  date_default_timezone_set('Europe/Moscow');
+  $date = date('d.m.Y H:i:s');
+  echo $date;
+  echo '<br>';
+  $time = strtotime($date);
+  echo $time;
+}
+
+function taskFive() {
+  $stringOne = 'Карл у Клары украл Кораллы';
+  $resultOne = str_replace('К', '', $stringOne);
+  echo $resultOne;
+  echo '<br>';
+  $stringTwo = 'Две бутылки лимонада';
+  echo $stringTwo;
+  $resultTwo = str_replace('Две', 'Три', $stringTwo);
+  echo $resultTwo;
+}
+
 // TASK SIX
 function openFile($file) {
+  file_put_contents('text.txt', 'Новый файл');
   $fp = fopen($file, 'r');
 
   $str = '';
