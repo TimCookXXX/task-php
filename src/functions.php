@@ -1,8 +1,7 @@
 <?php
 
 // TASK ONE
-function task1($array, $print = true) {
-  $array = ['One', 'Two', 'Three', 'Four', 'Five'];
+function task1(array $array, $print = true) {
   if ($print) {
     return implode(' ', $array);
   } else {
@@ -16,23 +15,20 @@ function task1($array, $print = true) {
 
 // TASK TWO
 function calcEverything($operator, ...$args) {
-  
+  $result = implode($operator, $args) . "=";
   switch ($operator) {
     case '+':
-      $result = array_sum($args);
-      return implode($operator, $args) . "=" . array_sum($args);
+      return $result . array_sum($args);
     case '-':
-      $result = array_shift($args) - array_sum($args);
-      return implode($operator, $args) . "=" . $result;
+      return $result . array_shift($args) - array_sum($args);
     case '*':
-      $result = array_product($args);
-      return implode($operator, $args) . "=" . $result;
+      return $result . array_product($args);
     case '/':
-      $result = array_shift($args);
+      $data = array_shift($args);
       foreach ($args as $arg) {
-        $result = $result / $arg;
+        $data = $data / $arg;
       }
-      return implode($operator, $args) . "=" . $result;
+      return $result . $data;
     
     default:
       return 'Неизвестная мне сущность';
