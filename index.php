@@ -1,27 +1,13 @@
 <?php 
 include('./src/functions.php');
 
-for ($i = 1; $i < 50; $i++) {
+for ($i = 1; $i <= 50; $i++) {
   $users[] = createUser($i);
 }
 
 file_put_contents('./users.json', json_encode($users));
 
-$data = file_get_contents('./users.json');
-$decodeUsers = json_decode($data, true);
+calcUsers();
 
-$names = [];
-$sumAge = 0;
-
-foreach($decodeUsers as $user) {
-  if(isset($names[$user['name']])) {
-    $names[$user['name']]++;
-  } else {
-    $names[$user['name']] = 1;
-  }
-  $sumAge += $user['age'];
-}
-
-var_dump($names);
-echo 'Средний возраст: ' . $sumAge / sizeof($decodeUsers);
+calcAge();
 ?>
