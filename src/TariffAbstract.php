@@ -38,5 +38,14 @@ abstract class TariffAbstract implements TariffInterface
   {
     return $this->distance;
   }
+
+  public function getServices() 
+  {
+    $result = [];
+    foreach ($this->services as $service) {
+      $result[] = $service->name;
+    }
+    return implode(', ', $result);
+  }
 }
 ?>

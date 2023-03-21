@@ -3,6 +3,7 @@ class ServiceDriver implements ServiceInterface
 {
 
   private $price;
+  public $name = 'Дополнительный водитель';
 
   public function __construct(int $price) 
   {

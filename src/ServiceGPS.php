@@ -3,6 +3,7 @@ class ServiceGPS implements ServiceInterface
 {
 
   private $pricePerHour;
+  public $name = 'GPS';
 
   public function __construct(int $pricePerHour) 
   {
