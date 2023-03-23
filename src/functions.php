@@ -1,5 +1,6 @@
 <?php
-function createUser($id) {
+function createUser($id) 
+{
   $names = ['Tim', 'Andrew', 'Alex', 'Gringo', 'Thomas'];
   
   $user = [
@@ -11,25 +12,29 @@ function createUser($id) {
   return $user;
 }
 
-function saveUsers($users) {
+function saveUsers($users) 
+{
   file_put_contents('./users.json', json_encode($users));
 }
 
-function getUsers() {
+function getUsers() 
+{
   $data = file_get_contents('./users.json');
   $decodeUsers = json_decode($data, true);
 
   return $decodeUsers;
 }
 
-function calcUsers() {
+function calcUsers() 
+{
   $name = array_column(getUsers(), 'name');
   $listName = array_count_values($name);
   echo '<pre>';
   print_r($listName);
 }
 
-function calcAge() {
+function calcAge() 
+{
   $sumAge = array_sum(array_column(getUsers(), 'age'));
   $resultAge = $sumAge / sizeof(getUsers());
 
